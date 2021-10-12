@@ -6,7 +6,7 @@ use App\Models\Report;
 use App\Models\Students;
 use App\Models\Subject;
 use Illuminate\Http\Request;
-use function PHPUnit\Framework\isJson;
+
 
 class ReportController extends Controller
 {
@@ -20,7 +20,6 @@ class ReportController extends Controller
     }
 
     public function store(Request $request){
-
         $student=$request->student_id;
         $subject = $request->subject_id;
         $a = Report::where('student_id',$student)->first();
@@ -32,13 +31,11 @@ class ReportController extends Controller
             );
             return back()->with($notification);
         }
-
         $data= new Report;
         $data->student_id = $request->student_id;
         $data->subject_id = $request->subject_id;
         $data->total_marks = $request->total_marks;
        $save= $data->save();
-
         if ($save) {
             $notification = array(
                 'messege' => 'Successfully Add !!!',

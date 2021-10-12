@@ -4,6 +4,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\StudentsController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\AddClassController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,6 +19,11 @@ Route::get("single-student/{id}",[HomeController::class,'singleStudent'])->name(
 
 Route::resource('students', StudentsController::class);
 Route::resource('subject', SubjectController::class);
+
+
+Route::resource('classes', AddClassController::class);
+Route::get("class-to-student",[AddClassController::class,'classToStudent'])->name('classTOstudent.add');
+Route::post("class-student",[AddClassController::class,'classStudent'])->name('clasStudent.add');
 
 Route::get("subject_add",[ReportController::class,'subjectAdd'])->name('subject.add');
 Route::post("add_subject",[ReportController::class,'store'])->name('add.subject');

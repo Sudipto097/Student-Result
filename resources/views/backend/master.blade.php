@@ -491,6 +491,25 @@
                     </li>
 
                     <li>
+                        <a href="#Addclass" data-toggle="collapse">
+                            <i class="mdi mdi-text-box-multiple-outline"></i>
+                            <span>Class </span>
+                            <span class="menu-arrow"></span>
+                        </a>
+                        <div class="collapse" id="Addclass">
+                            <ul class="nav-second-level">
+                                <li>
+                                    <a href="{{route('classes.create')}}">Class Add</a>
+                                </li>
+                                <li>
+                                    <a href="{{route('classTOstudent.add')}}">Class To Student Add</a>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </li>
+
+                    <li>
                         <a href="#Student" data-toggle="collapse">
                             <i class="mdi mdi-text-box-multiple-outline"></i>
                             <span> Student </span>
