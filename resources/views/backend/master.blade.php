@@ -29,7 +29,7 @@
     <link href="{{asset('backend/assets/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{asset('backend/assets/libs/datatables.net-select-bs4/css//select.bootstrap4.min.css')}}" rel="stylesheet" type="text/css" />
 
-
+    <link href="{{asset("backend/assets/css/toastr.css")}}" rel="stylesheet" type="text/css" />
     <!-- icons -->
     <link href="{{asset("backend/assets/css/icons.min.css")}}" rel="stylesheet" type="text/css" />
     @yield('cus_style')
@@ -1024,9 +1024,29 @@
 <script src="{{asset('backend/assets/libs/pdfmake/build/pdfmake.min.js')}}"></script>
 <script src="{{asset('backend/assets/libs/pdfmake/build/vfs_fonts.js')}}"></script>
 <!-- third party js ends -->
-
+<script src="{{asset("backend/assets/js/toastr.min.js")}}"></script>
 <!-- App js-->
 <script src="{{asset("backend/assets/js/app.min.js")}}"></script>
+
+<script>
+    @if(Session::has('messege'))
+    var type = "{{Session::get('alert-type')}}"
+    switch (type) {
+        case 'info':
+            toastr.info("{{ Session::get('messege') }}");
+            break;
+        case 'success':
+            toastr.success("{{ Session::get('messege') }}");
+            break;
+        case 'warning':
+            toastr.warning("{{ Session::get('messege') }}");
+            break;
+        case 'error':
+            toastr.error("{{ Session::get('messege') }}");
+            break;
+    }
+    @endif
+</script>
 @yield('js')
 
 

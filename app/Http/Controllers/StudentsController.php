@@ -39,13 +39,26 @@ class StudentsController extends Controller
      */
     public function store(StudentsRequest $request)
     {
-        //
+
         $students= Students::create([
             "student_name"=>$request->get('student_name'),
             "student_father"=>$request->get('student_father'),
             "student_mother"=>$request->get('student_mother'),
         ]);
-        return redirect()->route('students.index');
+
+        if ($students) {
+            $notification = array(
+                'messege' => 'Successfully Student Add !!!',
+                'alert-type' => 'success'
+            );
+        } else {
+            $notification = array(
+                'messege' => 'Something went wrong !',
+                'alert-type' => 'error'
+            );
+        }
+
+        return redirect()->route('students.index')->with($notification);
 
     }
 

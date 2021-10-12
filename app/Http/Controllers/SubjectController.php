@@ -37,13 +37,22 @@ class SubjectController extends Controller
      */
     public function store(SubjectRequest $request)
     {
-        //
         $Subject= Subject::create([
             "subjects"=>$request->get('subjects'),
         ]);
+        if ($Subject) {
+            $notification = array(
+                'messege' => 'Successfully Subject Add !!!',
+                'alert-type' => 'success'
+            );
+        } else {
+            $notification = array(
+                'messege' => 'Something went wrong !',
+                'alert-type' => 'error'
+            );
+        }
 
-        return redirect()->route('subject.index');
-        //return back();
+        return redirect()->route('subject.index')->with($notification);
     }
 
     /**
