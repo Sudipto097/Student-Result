@@ -1,6 +1,6 @@
 @extends('backend.master')
-@section('cus_style')
-
+@section('title_a')
+    <title>{{__("Student List")}}</title>
 @endsection
 @section('content')
     <div class="container-fluid">
@@ -19,6 +19,7 @@
                                 <th>Student Name</th>
                                 <th>Student Father Name</th>
                                 <th>Student Mother Name</th>
+                                <th>Student Email</th>
                             </tr>
                             </thead>
 
@@ -31,7 +32,9 @@
                                     <td>{{$key->student_name}}</td>
                                     <td>{{$key->student_father}}</td>
                                     <td>{{$key->student_mother}}</td>
-
+                                    <td>
+                                        {{$key->email}}
+                                    </td>
                                 </tr>
                             @endforeach
 

@@ -12,6 +12,7 @@ class Students extends Model
         'student_name',
         'student_father',
         'student_mother',
+        'email',
     ];
 
     public function subjects(){

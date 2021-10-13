@@ -1,24 +1,23 @@
 @extends('backend.master')
 @section('title_a')
-    <title>{{__("Student Info")}}</title>
-@endsection
-@section('cus_style')
-    <!-- Plugins css -->
-    <link href="{{asset('backend/libs/dropzone/min/dropzone.min.css')}}" rel="stylesheet" type="text/css"/>
-    <link href="{{asset('backend/libs/dropify/css/dropify.min.css')}}" rel="stylesheet" type="text/css"/>
-
-    <!--dataTables-->
-    <link rel="stylesheet" type="text/css" href="{{asset('backend/assets/css/dataTables.css')}}">
+    <title>{{__("Student Add")}}</title>
 @endsection
 @section('content')
     <div class="container-fluid">
         <!-- start page title -->
         <div class="row">
-            <div class="col-12">
+            <div class="col-6">
                 <div class="page-title-box">
                     <div class="page-title-right">
                     </div>
                     <h4 class="page-title">{{__("Student Info")}}</h4>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="page-title-box">
+                    <div class="page-title-right">
+                    </div>
+                    <a href="{{route('import.more')}}" class="page-title badge-danger">{{__("Import Student")}}</a>
                 </div>
             </div>
         </div>
@@ -47,6 +46,13 @@
                                     <div class="form-group">
                                         <label for="firstname">{{__("Students Mother Name")}}</label>
                                         <input type="text" class="form-control" name="student_mother" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="firstname">{{__("Email")}}</label>
+                                        <input type="text" class="form-control" name="email" required>
                                     </div>
                                 </div>
 

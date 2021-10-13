@@ -1,14 +1,6 @@
 @extends('backend.master')
 @section('title_a')
-    <title>{{__("Student Info")}}</title>
-@endsection
-@section('cus_style')
-    <!-- Plugins css -->
-    <link href="{{asset('backend/libs/dropzone/min/dropzone.min.css')}}" rel="stylesheet" type="text/css"/>
-    <link href="{{asset('backend/libs/dropify/css/dropify.min.css')}}" rel="stylesheet" type="text/css"/>
-
-    <!--dataTables-->
-    <link rel="stylesheet" type="text/css" href="{{asset('backend/assets/libs/bootstrap-select/css/bootstrap-select.min.css')}}">
+    <title>{{__("Add Class")}}</title>
 @endsection
 @section('content')
     <div class="container-fluid">
@@ -62,6 +54,7 @@
                             <tr>
                                 <th>No</th>
                                 <th>Class Name</th>
+                                <th>Total Student</th>
                                 <th>Actions</th>
                             </tr>
                             </thead>
@@ -73,8 +66,12 @@
                                     <?php $number++;
                                     ?>
                                     <td>{{$key->class_name}}</td>
+                                    @php
+                                    $total=\App\Models\AllClass::where('class_id',$key->id)->groupBy('class_id')->count('student_id');
+                                    @endphp
+                                    <td>{{$total}}</td>
                                     <td>
-                                        <a href="" role="button" class="btn btn-danger">Detail</a>
+                                        <a href="{{route('single.class',$key->id)}}" role="button" class="btn btn-danger">Detail</a>
                                     </td>
                                 </tr>
                             @endforeach

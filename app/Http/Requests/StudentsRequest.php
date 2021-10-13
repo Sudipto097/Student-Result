@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StudentsRequest extends FormRequest
 {
@@ -32,7 +33,11 @@ class StudentsRequest extends FormRequest
             ],
             'student_mother'=>[
                 'required ',
-            ]
+            ],
+            'email'=>[
+                'required ',
+                Rule::unique('students'),
+            ],
         ];
     }
 }

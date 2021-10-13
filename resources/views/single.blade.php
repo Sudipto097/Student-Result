@@ -1,6 +1,6 @@
 @extends('backend.master')
-@section('cus_style')
-
+@section('title_a')
+    <title>{{$student->student_name}}</title>
 @endsection
 @section('content')
     <div class="container-fluid">
