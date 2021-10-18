@@ -3,20 +3,25 @@
 namespace App\Imports;
 
 use App\Models\Students;
+use Illuminate\Database\Eloquent\Model;
 use Maatwebsite\Excel\Concerns\Importable;
+use Maatwebsite\Excel\Concerns\SkipsErrors;
+use Maatwebsite\Excel\Concerns\SkipsFailures;
 use Maatwebsite\Excel\Concerns\SkipsOnError;
+use Maatwebsite\Excel\Concerns\SkipsOnFailure;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
+use Maatwebsite\Excel\Concerns\WithValidation;
 use Throwable;
 
-class StudentsImport implements ToModel, WithHeadingRow
+class StudentsImport implements ToModel, WithHeadingRow,SkipsOnError,WithValidation,SkipsOnFailure
 {
 
-    use Importable;
+    use Importable,SkipsErrors,SkipsFailures;
     /**
     * @param array $row
     *
-    * @return \Illuminate\Database\Eloquent\Model|null
+    * @return Model|null
     */
     public function model(array $row)
     {
@@ -27,9 +32,15 @@ class StudentsImport implements ToModel, WithHeadingRow
             'email'=>$row['email'],
         ]);
     }
+    public function rules(): array
+    {
+        return [
+            '*.email' => [
+                'email',
+                'unique:students'
+            ],
+        ];
+    }
 
-//    public  function onError(Throwable $e)
-//    {
-//        // TODO: Implement onError() method.
-//    }
+
 }
