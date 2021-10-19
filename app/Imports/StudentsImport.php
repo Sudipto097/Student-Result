@@ -32,8 +32,7 @@ class StudentsImport implements ToModel, WithHeadingRow,SkipsOnError,WithValidat
             'email'=>$row['email'],
         ]);
     }
-    public function rules(): array
-    {
+    public function rules(): array{
         return [
             '*.email' => [
                 'email',

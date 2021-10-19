@@ -19,14 +19,14 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        </h5>
                         <form method="post" action="{{route('import.add')}}" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="firstname">{{__("Add File")}}</label>
-                                        <input type="file" accept=".xlsx" placeholder="gududdgu" class="form-control" name="file" required>
+                                        <input type="file" accept=".xlsx" placeholder="gududdgu" class="form-control"
+                                               name="file" required>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
@@ -43,8 +43,6 @@
             </div><!-- end col -->
         </div>
         <!-- end row -->
-
-
     </div> <!-- container -->
 
 @endsection
