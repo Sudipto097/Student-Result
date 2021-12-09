@@ -1,6 +1,6 @@
 @extends('backend.master')
-@section('cus_style')
-
+@section('title_a')
+    <title>{{__("Student Report")}}</title>
 @endsection
 @section('content')
     <div class="container-fluid">

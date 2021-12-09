@@ -1,6 +1,6 @@
 @extends('backend.master')
 @section('title_a')
-    <title>{{__("Student Info")}}</title>
+    <title>{{__("Class To Student")}}</title>
 @endsection
 @section('cus_style')
     <!-- Plugins css -->
@@ -18,7 +18,7 @@
                 <div class="page-title-box">
                     <div class="page-title-right">
                     </div>
-                    <h4 class="page-title">{{__("Student Info")}}</h4>
+                    <h4 class="page-title">{{__("Class To Student")}}</h4>
                 </div>
             </div>
         </div>
@@ -28,9 +28,22 @@
                 <div class="card">
                     <div class="card-body">
                         </h5>
-                        <form method="post" action="{{route('add.subject')}}" enctype="multipart/form-data">
+                        <form method="post" action="{{route('clasStudent.add')}}" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="firstname">{{__("Class Name")}}</label>
+                                        <select name="class_id" class="selectpicker" data-style="btn-outline-primary">
+                                            <option value="0">Select Subject</option>
+                                            @foreach($class as $key)
+                                                <option value="{{$key->id}}">{{$key->class_name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+
+
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="firstname">{{__("Student Name")}}</label>
@@ -42,23 +55,11 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="firstname">{{__("Subject Name")}}</label>
-                                        <select name="class_id" class="selectpicker" data-style="btn-outline-primary">
-                                            <option value="0">Select Subject</option>
-                                            @foreach($class as $key)
-                                                <option value="{{$key->id}}">{{$key->class_name}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-
 
                                 <div class="col-md-12">
                                     <button type="submit" class="ladda-button btn btn-primary" dir="ltr"
                                             data-style="expand-right">
-                                        {{__("Add")}}
+                                        {{__("Add ")}}
                                     </button>
                                 </div>
                             </div> <!-- end row -->

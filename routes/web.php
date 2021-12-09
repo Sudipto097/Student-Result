@@ -18,11 +18,17 @@ Route::get("/",HomeController::class)->name('home');
 Route::get("single-student/{id}",[HomeController::class,'singleStudent'])->name('student.single');
 
 Route::resource('students', StudentsController::class);
+Route::get("import-more",[StudentsController::class,'ImportFile'])->name('import.more');
+Route::post("import-more",[StudentsController::class,'Import'])->name('import.add');
+
+
+
 Route::resource('subject', SubjectController::class);
 
 
 Route::resource('classes', AddClassController::class);
 Route::get("class-to-student",[AddClassController::class,'classToStudent'])->name('classTOstudent.add');
+Route::get("single-class/{id}",[AddClassController::class,'singleClass'])->name('single.class');
 Route::post("class-student",[AddClassController::class,'classStudent'])->name('clasStudent.add');
 
 Route::get("subject_add",[ReportController::class,'subjectAdd'])->name('subject.add');

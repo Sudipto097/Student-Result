@@ -3,9 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StudentsRequest;
+use App\Imports\StudentsDetailsImport;
+use App\Imports\StudentsImport;
 use App\Models\Report;
 use App\Models\Students;
+use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Excel;
 
 class StudentsController extends Controller
 {
@@ -44,6 +48,7 @@ class StudentsController extends Controller
             "student_name"=>$request->get('student_name'),
             "student_father"=>$request->get('student_father'),
             "student_mother"=>$request->get('student_mother'),
+            "email"=>$request->get('email'),
         ]);
 
         if ($students) {
@@ -68,12 +73,9 @@ class StudentsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Students $students)
+    public function show($id)
     {
 
-       $data['marks'] = Report::where('student_id',$students->id)->get();
-       dd($students);
-        return view('single');
     }
 
     /**
@@ -108,5 +110,33 @@ class StudentsController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function ImportFile(){
+
+        return view('Students.Import');
+    }
+
+
+    public function Import(Request $request){
+    $data_a=$request->validate([
+            'file'=> 'required|mimes:xlsx,'
+        ]);
+        $file = $request->file('file')->store('import');
+        $data= (new StudentsImport)->import($file);
+        if ($data) {
+            $notification = array(
+                'messege' => 'Successfully Excel Add !!!',
+                'alert-type' => 'success'
+            );
+        } else {
+            $notification = array(
+                'messege' => 'Something went wrong !',
+                'alert-type' => 'error'
+            );
+            return back()->with($notification);
+        }
+        return redirect()->route('students.index')->with($notification);
+
     }
 }
